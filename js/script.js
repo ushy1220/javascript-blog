@@ -10,37 +10,36 @@ function titleClickHandler(event){
 
   const activeLinks = document.querySelectorAll('.titles a.active');
 
-for(let activeLink of activeLinks){
-  activeLink.classList.remove('active');
-}
+  for(let activeLink of activeLinks){
+    activeLink.classList.remove('active');
+  }
 
   /* [IN PROGRESS] add class 'active' to the clicked link */
 
-for(let link of links) {                         //MOJE
-  this.classList.add('active');                  //MOJE
-}
+  clickedElement.classList.add('active');                  //MOJE  podkreslenie linkow po kliknieciu
 
   console.log('clickedElement:', clickedElement);
 
   /* remove class 'active' from all articles */
 
-  const activeArticles = document.querySelectorAll('.posts a.active');
+  const activeArticles = document.querySelectorAll('.posts article.active');
 
-for(let activeArticle of activeArticles){
-  activeArticle.classList.remove('active');
-}
+  for(let activeArticle of activeArticles){
+    activeArticle.classList.remove('active');
+  }
 
   /* get 'href' attribute from the clicked link */
 
+  let hrefAtr = clickedElement.getAttribute('href');
+
   /* find the correct article using the selector (value of 'href' attribute) */
+
+  let articleValue = document.querySelector(hrefAtr);
+  
 
   /* add class 'active' to the correct article */
 
-  const articlesSelector = document.querySelectorAll("Article");      //MOJE
-  const articles = document.querySelectorAll('article');                    //MOJE
-  for(let article of articles){                                       //MOJE
-    this.classList.add('active');                                 //MOJE
-  }
+  articleValue.classList.add('active');                        
 }
 
 // MODUŁ 6
@@ -56,23 +55,23 @@ function generateTags(){
 
   /* START LOOP: for every article: */
 
-    /* find tags wrapper */
+  /* find tags wrapper */
 
-    /* make html variable with empty string */
+  /* make html variable with empty string */
 
-    /* get tags from data-tags attribute */
+  /* get tags from data-tags attribute */
 
-    /* split tags into array */
+  /* split tags into array */
 
-    /* START LOOP: for each tag */
+  /* START LOOP: for each tag */
 
-      /* generate HTML of the link */
+  /* generate HTML of the link */
 
-      /* add generated code to html variable */
+  /* add generated code to html variable */
 
-    /* END LOOP: for each tag */
+  /* END LOOP: for each tag */
 
-    /* insert HTML of all the links into the tags wrapper */
+  /* insert HTML of all the links into the tags wrapper */
 
   /* END LOOP: for every article: */
 }
