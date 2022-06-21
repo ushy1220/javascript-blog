@@ -73,7 +73,7 @@ generateTitleLinks();
 const links = document.querySelectorAll('.titles a');
 
 for(let link of links){
-  link.addEventListener('click', titleClickHandler);
+  link.addEventListener('click', titleClickHandler);    //od const link do konca skopiowac i wstawic na koncu pracy v
 } 
 
 // MODUŁ 6
@@ -136,6 +136,9 @@ function tagClickHandler(event){
   /* execute function "generateTitleLinks" with article selector as argument */
 }
 
+        // Wstawic TU!!!!
+
+        
 function addClickListenersToTags(){
   /* find all links to tags */
   let links = document.querySelectorAll('a[href^="#tag-"]'); // (optArticleTagsSelector + ' a')
