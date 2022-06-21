@@ -42,13 +42,40 @@ function titleClickHandler(event){
   articleValue.classList.add('active');                        
 }
 
-// MODUŁ 6
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles';
+
+function generateTitleLinks(){
+
+  /* remove contents of titleList */
+  let titles = document.querySelector(optTitleListSelector);
+  titles.innerHTML = '';
+  /* for each article */
+  let articles = document.querySelectorAll(optArticleSelector)
+  for(let article of articles) {
+    /* get the article id */
+    let id = article.getAttribute('id');
+    /* find the title element */
+    let title = article.querySelector(optTitleSelector).innerHTML;
+    /* get the title from the title element */
+
+    /* create HTML of the link */
+    let html = '<li><a href="#'+id+'"><span>'+title+'</span></a></li>';
+    /* insert link into titleList */
+    titles.innerHTML += html;    /* titles.innerHTML = titles.innerHTML+html */
+ }
+}
+
+generateTitleLinks();
 
 const links = document.querySelectorAll('.titles a');
 
 for(let link of links){
   link.addEventListener('click', titleClickHandler);
 } 
+
+// MODUŁ 6
 
 function generateTags(){
   /* find all articles */
