@@ -17,7 +17,7 @@ for(let activeLink of activeLinks){
   /* [IN PROGRESS] add class 'active' to the clicked link */
 
 for(let link of links) {                         //MOJE
-  link.classList.add('active');                  //MOJE
+  this.classList.add('active');                  //MOJE
 }
 
   console.log('clickedElement:', clickedElement);
@@ -37,15 +37,44 @@ for(let activeArticle of activeArticles){
   /* add class 'active' to the correct article */
 
   const articlesSelector = document.querySelectorAll("Article");      //MOJE
-  const articles = document.querySelectorAll('a');                    //MOJE
+  const articles = document.querySelectorAll('article');                    //MOJE
   for(let article of articles){                                       //MOJE
-    articlesSelector.classList.add('active');                         //MOJE
+    this.classList.add('active');                                 //MOJE
   }
-  articles.classList.remove('active');
 }
+
+// MODUŁ 6
 
 const links = document.querySelectorAll('.titles a');
 
 for(let link of links){
   link.addEventListener('click', titleClickHandler);
 } 
+
+function generateTags(){
+  /* find all articles */
+
+  /* START LOOP: for every article: */
+
+    /* find tags wrapper */
+
+    /* make html variable with empty string */
+
+    /* get tags from data-tags attribute */
+
+    /* split tags into array */
+
+    /* START LOOP: for each tag */
+
+      /* generate HTML of the link */
+
+      /* add generated code to html variable */
+
+    /* END LOOP: for each tag */
+
+    /* insert HTML of all the links into the tags wrapper */
+
+  /* END LOOP: for every article: */
+}
+
+generateTags();
