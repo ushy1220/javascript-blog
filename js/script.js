@@ -122,7 +122,7 @@ function tagClickHandler(event){            //SAMODZIELNIE
   const tag = href.getAttribute('data-tags');
 
   /* find all tag links with class active */
-  let tagLinks = tag.classList('active');
+  let tagLinks = tag.querySelectorAll('a.active[href^="#tag-"]');
 
   /* START LOOP: for each active tag link */
   for(let tagLink of tagLinks){
