@@ -72,7 +72,7 @@ function generateTitleLinks(customSelector = ''){
   }
 }
 
-generateTitleLinks();
+function generateTitleLinks();
 
 const links = document.querySelectorAll('.titles a');
 
@@ -109,7 +109,7 @@ function generateTags(){
   }
 }
 
-generateTags();
+function generateTags();
 
 function tagClickHandler(event){            //SAMODZIELNIE
 
@@ -170,11 +170,13 @@ function addClickListenersToTags(){
   }
 }
 
-addClickListenersToTags();
+function addClickListenersToTags();
 
 // SAMODZIELNIE- TAGI (TABLICA)
 
 const optTagsListSelector = '.tags.list';
+
+function calculateTagsParams(tags);
 
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
@@ -227,6 +229,8 @@ function generateTags(){
 
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(optTagsListSelector);
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams:', tagsParams);
 
   /* [NEW] create variable for all links HTML code */
   let allTagsHTML = '';
@@ -236,10 +240,23 @@ function generateTags(){
 
     /* [NEW] generate code of a link and and add it to allTagsHTML */
     allTagsHTML += tag + ' (' + allTags[tag] + ') ';
-  }
+
   /* [NEW] END LOOP: for each tag in allTags */
+  }
 
   /* [NEW] add html from allTagsHTML to taglist */
   tagList.innerHTML = allTagsHTML;
 }
 
+calculateTagsParams{
+  const params = 
+  max  (0);
+  for(let tag in tags){
+  if(tags[tag] > params.max){
+    params.max = tags[tag];
+  } else if(tags[tag] > params.min){
+    params.min = tags[tag];
+  }
+}console.log(tag + ' is used ' + tags[tag] + ' times');
+  return params;
+}
