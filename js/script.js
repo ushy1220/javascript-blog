@@ -88,7 +88,7 @@ generateTags();
 function tagClickHandler(event){            //SAMODZIELNIE
 
   /* prevent default action for this event */
-  event.preventDefault();
+  event.preventDefault();     //blokowanie domyslnych opcji przegladarki
 
   /* make new constant named "clickedElement" and give it the value of "this" */
   const clickedElement = this;
@@ -220,10 +220,10 @@ function generateTags(){
 
 function calculateTagsParams(tags){
   const params = {max: 0, min:99999};
-  for(let tag in tags){
+  for(let tag in tags){ 
     if(tags[tag] > params.max){
       params.max = tags[tag];
-    } else if(tags[tag] > params.min){
+    } else if(tags[tag] < params.min){
       params.min = tags[tag];
     }
   }
