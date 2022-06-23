@@ -1,5 +1,11 @@
 'use strict';
 
+const optArticleSelector = '.post',
+  optTitleSelector = '.post-title',
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list',
+  optTagsListSelector = '.tags.list';
+
 function titleClickHandler(event){
   const clickedElement = this;
   event.preventDefault();                        //moje moje moje 
@@ -41,11 +47,6 @@ function titleClickHandler(event){
   articleValue.classList.add('active');                        
 }
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
-
 function generateTitleLinks(customSelector = ''){
 
   /* remove contents of titleList */
@@ -72,7 +73,7 @@ function generateTitleLinks(customSelector = ''){
   }
 }
 
-function generateTitleLinks();
+generateTitleLinks();
 
 const links = document.querySelectorAll('.titles a');
 
@@ -147,10 +148,6 @@ addClickListenersToTags();
 
 // SAMODZIELNIE- TAGI (TABLICA)
 
-const optTagsListSelector = '.tags.list';
-
-function calculateTagsParams(tags);
-
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
   let allTags = {};
@@ -183,8 +180,8 @@ function generateTags(){
       html +=  tmp;
 
       /* [NEW] check if this link is NOT already in allTags */
-      if(!allTags.hasOwnProperty(tag)){      //jeśli allTags NIE MA klucza tag
-        
+      if(!(tag in allTags)){      //jeśli allTags NIE MA klucza tag    
+                                  
         /* [NEW] add generated code to allTags array */
         allTags[tag] = 1;
       } else {
@@ -224,11 +221,11 @@ function generateTags(){
 function calculateTagsParams(tags){
   const params = {max: 0, min:99999};
   for(let tag in tags){
-  if(tags[tag] > params.max){
-    params.max = tags[tag];
-  } else if(tags[tag] > params.min){
-    params.min = tags[tag];
+    if(tags[tag] > params.max){
+      params.max = tags[tag];
+    } else if(tags[tag] > params.min){
+      params.min = tags[tag];
+    }
   }
-}
   return params;
 }
