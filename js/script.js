@@ -82,39 +82,12 @@ for(let link of links){
 
 // MODUŁ 6
 
-function generateTags(){
-  /* find all articles */
-  let articles = document.querySelectorAll(optArticleSelector);
-  /* START LOOP: for every article: */
-  for(let article of articles){
-    /* find tags wrapper */
-    let wrapper = article.querySelector(optArticleTagsSelector);
-    /* make html variable with empty string */
-    let html = '';
-    /* get tags from data-tags attribute */
-    let tagsString = article.getAttribute('data-tags');
-    /* split tags into array */
-    let tags = tagsString.split(' ');   /* dziele tagi na pojedyncze elementy za pomocą spacji */
-    /* START LOOP: for each tag */
-    for(let tag of tags) {
-    /* generate HTML of the link */
-      let tmp = '<li><a href="#tag-'+tag+'">'+tag+'</a></li> ';
-      /* add generated code to html variable */
-      html +=  tmp;
-    /* END LOOP: for each tag */
-    }
-    /* insert HTML of all the links into the tags wrapper */
-    wrapper.innerHTML = html;
-    /* END LOOP: for every article: */
-  }
-}
-
-function generateTags();
+generateTags();
 
 function tagClickHandler(event){            //SAMODZIELNIE
 
   /* prevent default action for this event */
-  event.preventDefault;
+  event.preventDefault();
 
   /* make new constant named "clickedElement" and give it the value of "this" */
   const clickedElement = this;
@@ -126,7 +99,7 @@ function tagClickHandler(event){            //SAMODZIELNIE
   const tag = href.replace('#tag-', '');
 
   /* find all tag links with class active */
-  let tagLinks = tag.querySelectorAll('a.active[href^="#tag-"]');
+  let tagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
 
   /* START LOOP: for each active tag link */
   for(let tagLink of tagLinks){
@@ -138,13 +111,13 @@ function tagClickHandler(event){            //SAMODZIELNIE
   }
 
   /* find all tag links with "href" attribute equal to the "href" constant */
-  let equalLinks = href.querySelectorAll('a[href="' + href + '"]');
+  let equalLinks = document.querySelectorAll('a[href="' + href + '"]');
 
   /* START LOOP: for each found tag link */
   for(let equalLink of equalLinks){
 
     /* add class active */
-    equalLink.classList.add('avtive');
+    equalLink.classList.add('active');
 
   /* END LOOP: for each found tag link */
   }
@@ -170,7 +143,7 @@ function addClickListenersToTags(){
   }
 }
 
-function addClickListenersToTags();
+addClickListenersToTags();
 
 // SAMODZIELNIE- TAGI (TABLICA)
 
@@ -239,7 +212,7 @@ function generateTags(){
   for(let tag in allTags){
 
     /* [NEW] generate code of a link and and add it to allTagsHTML */
-    allTagsHTML += tag + ' (' + allTags[tag] + ') ';
+    allTagsHTML += '<li><a href="#tag-'+tag+'">'+tag+'(' + allTags[tag] + ')</a></li>';
 
   /* [NEW] END LOOP: for each tag in allTags */
   }
@@ -248,15 +221,14 @@ function generateTags(){
   tagList.innerHTML = allTagsHTML;
 }
 
-calculateTagsParams{
-  const params = 
-  max  (0);
+function calculateTagsParams(tags){
+  const params = {max: 0, min:99999};
   for(let tag in tags){
   if(tags[tag] > params.max){
     params.max = tags[tag];
   } else if(tags[tag] > params.min){
     params.min = tags[tag];
   }
-}console.log(tag + ' is used ' + tags[tag] + ' times');
+}
   return params;
 }
