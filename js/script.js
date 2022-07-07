@@ -4,9 +4,11 @@ const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
-  optTagsListSelector = '.tags .list',
-  optArticleAuthorsSelector = '.post-author .list',
-  optAuthorsListSelector = '.authors .list';
+  optTagsListSelector = '.tags.list',
+  optArticleAuthorsSelector = '.post-author',
+  optAuthorsListSelector = '.authors.list',
+  optCloudClassCount = '5',
+  optCloudClassPrefix = 'tag-size-';
 
 function titleClickHandler(event){
   const clickedElement = this;
@@ -85,6 +87,14 @@ for(let link of links){
 
 // MODUŁ 6
 
+function calculateTagClass(count, params){
+  const normalizedCount = count - params.min;
+  const normalizedMax = params.max - params.min;
+  const percentage = normalizedCount / normalizedMax;
+  const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+  return optCloudClassPrefix + classNumber;
+}
+
 generateTags();
 generateAuthors();
 
@@ -136,7 +146,7 @@ function addClickListenersToTags(){
 
   /* find all links to tags */
   let links = document.querySelectorAll('a[href^="#tag-"]'); // (optArticleTagsSelector + ' a')
-
+  console.log (links);
   /* START LOOP: for each link */
   for(let link of links){
 
@@ -147,7 +157,7 @@ function addClickListenersToTags(){
   }
 }
 
-addClickListenersToTags();
+addClickListenersToTags();    
 
 // SAMODZIELNIE- TAGI (TABLICA)
 
@@ -214,8 +224,10 @@ function generateTags(){
   for(let tag in allTags){
 
     /* [NEW] generate code of a link and and add it to allTagsHTML */
-    allTagsHTML += '<li><a href="#tag-'+tag+'">'+tag+'(' + allTags[tag] + ')</a></li>';
+    allTagsHTML += '<li><a href="#tag-'+tag+'" class="'+ calculateTagClass(allTags[tag], tagsParams) +'">'+tag+'(' + allTags[tag] + ')</a></li>'; 
 
+    const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '</li>';
+    console.log('taglinkHTML:', tagLinkHTML);
   /* [NEW] END LOOP: for each tag in allTags */
   }
 
@@ -280,7 +292,7 @@ function authorClickHandler(event){            //SAMODZIELNIE
   }
 
   /* execute function "generateTitleLinks" with article selector as argument */
-  generateTitleLinks('[data-authors="' + author + '"]'); 
+  generateTitleLinks('[data-author="' + author + '"]'); 
 }
 
 
@@ -303,10 +315,6 @@ function addClickListenersToAuthors(){
 
 addClickListenersToAuthors();
 
-
-
-
-
 function generateAuthors(){
 
   /* [NEW] create a new variable allAuthors with an empty object */
@@ -325,30 +333,21 @@ function generateAuthors(){
     let html = '';
 
     /* get authors from data-authors attribute */
-    let authorsString = article.getAttribute('data-author');
+    let author = article.getAttribute('data-author');  
 
-    /* split authors into array */
-    let authors = authorsString.split(' ');
+    /* generate HTML of the link */
+    let tmp = '<li><a href="#author-'+author+'">'+author+'</a></li> ';
 
-    /* START LOOP: for each author */
-    for(let author of authors){
+    /* add generated code to html variable */
+    html +=  tmp;
 
-      /* generate HTML of the link */
-      let tmp = '<li><a href="#author-'+author+'">'+author+'</a></li> ';
-
-      /* add generated code to html variable */
-      html +=  tmp;
-
-      /* [NEW] check if this link is NOT already in allAuthors */
-      if(!(author in allAuthors)){      //jeśli allAuthors NIE MA klucza author    
+    /* [NEW] check if this link is NOT already in allAuthors */
+    if(!(author in allAuthors)){      //jeśli allAuthors NIE MA klucza author    
                                   
-        /* [NEW] add generated code to allAuthors array */
-        allAuthors[author] = 1;
-      } else {
-        allAuthors[author]++;     //Jeśli ten autor już znajduje się w allAuthors, zwiększymy licznik wystąpień o 1
-      }
-
-    /* END LOOP: for each author */
+      /* [NEW] add generated code to allAuthors array */
+      allAuthors[author] = 1;
+    } else {
+      allAuthors[author]++;     //Jeśli ten autor już znajduje się w allAuthors, zwiększymy licznik wystąpień o 1
     }
 
     /* insert HTML of all the links into the Authors wrapper */
