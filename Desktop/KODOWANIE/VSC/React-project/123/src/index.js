@@ -1,5 +1,10 @@
+/* Główny plik naszej aplikacji, w którym inicjujemy jej działanie */
+
 import ReactDOM from 'react-dom';
 import App from './App';
+//import scss
+import './styles/normalize.scss';
+import './styles/global.scss';
 
 /* 
 Mówimy Reactowi, aby w elemencie o id root została wyrenderowana treść komponentu (funkcji) App 
